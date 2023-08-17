@@ -1,10 +1,10 @@
 const timerEl = document.getElementById("timer")
 const timerMainEl = document.getElementById("timer-main")
-$(document).on("contextmenu", function (e) {
 
+$(document).on("contextmenu", function (e) {
   if (e.button == 2) {
     e.preventDefault();
-    callYourownFucntionOrCodeHere();
+    // callYourownFucntionOrCodeHere();
   }
   return true;
 });
@@ -67,25 +67,17 @@ jQuery(document).ready(function () {
   }, 120000);
 });
 
-let time = 0;
-const timer = () => {
+const timer = setInterval(displayHello, 1000);
+
+let time = 1
+function displayHello() {
   if (time <= 120) {
-    timerEl.innerText = time
-    time += 1;
+    timerEl.innerHTML = time;
+    time += 1
   }
 }
 
-const timefun = () => {
-  if (time <= 120) {
-    setInterval(timer, 1000);
-  } else {
-    return;
-  }
-
-}
-
-timefun()
-
+setTimeout(() => { clearInterval(timer) }, 120000);
 
 //Random number for image
 const randomNumber = () => Math.floor(Math.random() * 8) + 1;
@@ -150,11 +142,11 @@ const selectImage = (e) => {
   let targetElement = document.querySelector(".target");
   let currentParent = currentElement.parentElement;
   let targetParent = targetElement.parentElement;
-
+  
   //get row and col values for both elements
   const [row1, col1] = getCoords(currentParent);
   const [row2, col2] = getCoords(targetParent);
-
+  
   if (checkAdjacent(row1, row2, col1, col2)) {
     //Swap
     currentElement.remove();
@@ -175,7 +167,7 @@ const selectImage = (e) => {
       imagesArr[targetArrIndex],
       imagesArr[currentArrIndex],
     ];
-
+    
     //Win condition
     if (imagesArr.join("") == "123456789") {
       setTimeout(() => {
@@ -189,33 +181,32 @@ const selectImage = (e) => {
     //Increment a display move
     movesCount += 1;
     moves.innerText = `Moves: ${movesCount}`;
+    console.log(movesCount);
+    localStorage.setItem('user', JSON.stringify(movesCount));
   }
 };
 //
 
 const timeMain = () => {
-  let time = 0;
+  let time = 1;
   const timer = () => {
-    if (time <= 300) {
+    if (time <= 600) {
       timerMainEl.innerText = time
       time += 1;
     } else {
-      div.removeEventListener("click", selectImage)
+      jQuery(document).ready(function () {
+        setTimeout(function () {
+          location.replace("Timeoout.html")
+        }, 1000);
+      });
     }
   }
-  setInterval(timer, 1000);
+  const lastTimer = setInterval(timer, 1000);
+  // setTimeout(() => { clearInterval(timer) }, 600000);
 }
 
 
-function funRound3() {
-  location.replace("Timeoout.html");
-}
 
-const setTimeoutFormain = () => {
-  jQuery(document).ready(function () {
-    funRound3();
-  });
-}
 
 
 
@@ -226,7 +217,6 @@ startButton.addEventListener("click", () => {
   container.innerHTML = "";
   imagesArr = [];
   timeMain()
-  setTimeoutFormain()
   randomImages();
   gridGenerator();
   movesCount = 0;

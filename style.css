@@ -5,10 +5,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-img {
-  max-width: 100%;
-}
-
 .slider-game {
   width: 30%;
   display: flex;
@@ -19,6 +15,12 @@ img {
   border: black;
   border-style: dashed;
   user-select: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto !important;
+  background-size: cover;
 }
 
 .img {
@@ -165,4 +167,34 @@ div.transparent {
   border-radius: 50px;
   margin: 0 1000px;
   box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px;
+}
+
+.time-out{
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+  gap: 20px;
+  font-size: 3rem;
+  background-color: red;
+  font-family: monospace;
+  color: white;
+}
+.time-out .name {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+.user-data {
+  margin-top: 20px;
+  background: rgb(184, 226, 86);
+  width: 300px;
+  height: 200px;
+  margin: 0 auto;
+  color: black;
+  text-align: left;
+  padding: 10px;
+  border-radius: 10px;
+  text-transform: capitalize;
+  font-family: monospace;
+  line-height: 40px;
 }
