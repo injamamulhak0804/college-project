@@ -1,0 +1,11 @@
+let time = 0;
+const timer = () => {
+  if (time <= 10) {
+    timerEl.innerText = time
+    time += 1;
+  }
+  console.log(time);
+}
+
+setInterval(timer, 1000);
+timer();
